@@ -4,5 +4,7 @@ Funktionsweise:
 Das Skript prüft zunächst, ob 3CX derzeit für den automatischen Start eingerichtet ist. Ist dies nicht der Fall, startet es de 3CX-SoftPhone-Client für Windows.
 Es prüft dann einmal pro Sekunde, ob die App geladen wird, und minimiert es in die Taskleiste. 
 Das Skript wartet $wait Sekunden, bevor es geschlossen wird, wenn die App nicht geladen ist.
-Ich führe dies als geplante Aufgabe aus, die bei der Anmeldung ausgelöst wird
-inspiriert von: https://www.nooblet.org/blog/2020/automatically-minimize-3cx-phone-for-windows/
+Es kann als geplante Aufgabe ausgeführt werden, die bei der Anmeldung ausgelöst wird
+Ich habe den Code als PowerShell Script "minimize-3cx.ps1" gespeichert
+und dann als geplante Aufgabe mit dem Trigger "Beim Start des Computers ausführen" eingerichtet
+
