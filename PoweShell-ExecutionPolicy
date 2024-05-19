@@ -1,6 +1,0 @@
-Beim Versuch, ein PowerShell-Skript zu starten, heißt es: "Die Datei kann nicht geladen werden, da die Ausführung von Skripts auf diesem System deaktiviert ist". 
-Windows führt standardmäßig keine PowerShell-Skripts aus
-Die Fehlermeldung teilt dem Nutzer mit, dass die PowerShell-Skriptdatei nicht ausgeführt wird und verweist auf einen Microsoft-Artikel. Unter Windows 10 das Ausführen von PowerShell-Skripts beschränkt. 
-Im PowerShell-Konsolenfenster lassen sich zwar einzelne Befehle ausführen, aber sobald der Nutzer eine .ps1-Datei mit mehreren Befehlen ausführen möchte, erscheint die oben besagte Fehlermeldung.
-
-**Lösung**
