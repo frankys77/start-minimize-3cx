@@ -1,0 +1,60 @@
+# minimize-3cx.ps1
+# Written by Frank Grzbielok - https://Frank-Hilft.de
+# 19-05-2024
+#################################################
+# idee und inspiriert von https://www.nooblet.org/blog/2020/automatically-minimize-3cx-phone-for-windows/
+
+# Der Pfad zur Startup-Datei 
+# der muss ggfs angepasst werden, um den Start auszulösen, falls der 3CX-Client nicht gestartet worden ist
+
+$startupPath = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\3CXPhone for Windows.lnk"
+
+# Der Pfad zum Standard-Speicherort der exe-Datei, der muss ggfs. nach einem Update wieder angepasst werden
+$3cxPath = "C:\Program Files\WindowsApps\3CXDMCC.3CX_20.0.460.0_x64__bhm4yemhnd70e\3CXSoftphone.exe"
+
+# Der Processname der gesucht und dessn Status überprüft werden soll
+$3cxProcess = "3CXSoftphone"
+
+# Die Zeit (in Sekunden) zum laden von 3cx, bevor die suche aufgegeben wird
+$wait = 30
+
+function Close-Window {
+    param(
+        [Parameter()]
+        $handle = (Get-Process -Id $pid).MainWindowHandle
+    )
+
+    # expose "SendMessage" function
+    $winAPI = Add-Type -MemberDefinition @'
+[DllImport("user32.dll")]
+public static extern int SendMessage(int hWnd, uint Msg, int wParam, int lParam);
+'@ -Name "Win32CloseWindow" -Namespace Win32Functions -PassThru
+   
+    # close window
+    $winAPI::SendMessage($handle, 0x0112, 0xF060, 0)
+}
+
+# ist 3CX installiert, dann sehen wir nach ob es auch gestartet ist
+if ((Test-Path($3cxPath))) {
+    # if 3CX isn't set to startup automatically, then we need to start it
+    if (!(Test-Path($startupPath))) {
+        # Start 3CX
+        Start-Process $3cxPath
+    }
+}
+
+# Legen Sie die Startzeit fest, um zu bestimmen, wann die Suche gestoppt werden soll
+$startTime = Get-Date
+
+# Überprüfen Sie, ob die Schleife länger als läuft $wait
+while ((New-TimeSpan -Start $startTime -End (Get-Date)).TotalSeconds -le $wait) {
+    # Get 3cx process details
+    $process = (Get-Process -Name $3cxProcess)
+    if ($process.length -gt 0) {
+        # minimize process
+        # Handles that equal 0 are already minimized/hidden
+        $process.MainWindowHandle | Where-Object { [int]$_ -gt 0 } | ForEach-Object { Close-Window $_ }
+        break
+    }
+    Start-Sleep 1
+}
