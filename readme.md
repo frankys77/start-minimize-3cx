@@ -23,7 +23,7 @@ dann führt das Script die Startdatei aus um diese anschließend zu minimieren. 
 **Step 1: Script erstellen**
 
 1. Erstelle ein Powershell-Script mit einem beliebigen Namen. In meinem Beispiel habe ich es einfach **minimize-3cx.ps1** benannt
-2. Kopieren den Code in das Script und speichere dieses unter C:\Windows\system32
+2. Kopieren den Code (minimize-script) in das Script und speichere dieses unter C:\Windows\system32
 oder in einen beliebigen anderen Pfad z.B. C:\Scripts o.ä. dann muss allerdings die **Ausführungs Policy** für das Ausführen von nicht signierten ps-Scripten noch angepasst werden.
 3. Erstelle eine geplante Aufgabe und führe das Script beim Start des Comuputers aus.
 
