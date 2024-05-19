@@ -7,7 +7,7 @@
   
 -->
 
-# 3cx SoftClients für Windows minimiert starten
+# 3cx Client in Windows minimieren
 
 _Beispiel-Code für ein PowerShell Script._
 </header>
