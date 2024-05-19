@@ -16,15 +16,17 @@ Im PowerShell-Konsolenfenster lassen sich zwar einzelne Befehle ausführen, aber
 
 Klicken Sie auf Start, tippen Sie PowerShell ein und benutzen Sie beim gefundenen PowerShell den Befehl _Als Administrator ausführen_. Die PowerShell erscheint mit Admin-Rechten. 
 Tippen Sie **Get-ExecutionPolicy** ein und drücken Sie Enter. 
+
 Standardmäßig erscheint _Restricted_.
 
 Grundsätzlich wäre es viel zu gefährlich alle Scripte einfach zuzulassen, aber es gibt eine Einstellung, mit der nur die lokal erzeugten _. ps1-Scripte_ auf diesem PC ausgeführt werden können:
-Tippen Sie hierfür den Befehl in die PowerShell und drücken Sie Enter: 
+Tippen Sie hierfür den Befehl in die PowerShell und drücken Sie Enter: <br />
 **ps:>Set-ExecutionPolicy RemoteSigned**
 
-Überprüfen Sie es jetzt noch einmal mit dem Befehl:
-**ps:>Get-ExecutionPolicy**
+Überprüfen Sie es jetzt noch einmal mit dem Befehl:<br />
+**ps:>Get-ExecutionPolicy**<br />
+
 jetzt sollte der Rückgabewert _**RemoteSigned**_ angezeigt werden.
 
-Möchten Sie irgedwann diese Einstellung wieder rückgängig machen, dann hilft der Befehl in der Admin-PowerShell:
+Möchten Sie irgendwann diese Einstellung wieder rückgängig machen, dann hilft der Befehl in der Admin-PowerShell:<br />
 **ps:>Get-ExecutionPolicy Default**
